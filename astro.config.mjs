@@ -6,19 +6,27 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'My Docs',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			title: 'Flowly.js',
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/FluenceDev/flowly-docs' }],
 			sidebar: [
 				{
-					label: 'Guides',
+					label: 'Concepts',
 					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
+						{ label: 'Introduction', slug: 'concepts/introduction' },
 					],
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Getting Started',
+					items: [
+						{ label: 'Installation', slug: 'getting-started/installation' },
+						{ label: 'Building a first flow', slug: 'getting-started/building-flow' },
+					],
+				},
+				{
+					label: 'Tutorials',
+					items: [
+						{ label: 'Configuration', slug: 'tutorials/configuration' },
+					],
 				},
 			],
 		}),

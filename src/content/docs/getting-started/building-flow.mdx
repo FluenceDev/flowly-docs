@@ -1,0 +1,137 @@
+---
+title: Building Your First Flow
+description: Learn how to quickly set up Flowly and create your first interactive flow diagram.
+---
+
+After successfully installing Flowly, it's time to create your first interactive flow diagram! This guide will walk you through the essential steps to get a basic Flowly instance running and add your first nodes.
+
+## 1. Prepare Your HTML And Initialize Flowly
+
+First, you need a container element in your HTML where Flowly will render your flow. This is typically a `div` with a unique ID.
+
+Create an `index.html` file (or add to an existing one) with the following structure:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Flowly App</title>
+    <link rel="stylesheet" href="[https://unpkg.com/flowly@latest/dist/flowly.css](https://unpkg.com/flowly@latest/dist/flowly.css)">
+    <style>
+      /* Basic styling for the flowly container */
+      .flowly-container {
+        width: 100%;
+        height: 500px; /* Adjust height as needed */
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        background-color: #fcfcfc;
+      }
+    </style>
+</head>
+<body>
+    <h1>My Flowly Diagram</h1>
+
+    <div id="flowly-container" class="flowly-container"></div>
+
+    <script src="[https://unpkg.com/flowly@latest/dist/flowly.min.js](https://unpkg.com/flowly@latest/dist/flowly.min.js)"></script>
+    <script>
+    import Flowly from 'flowly'; // If using npm/pnpm/Yarn
+    // If using CDN, Flowly will be available globally, you can remove this import.
+
+    // Initialize Flowly by passing the ID of your container
+    const flowly = new Flowly('flowly-container', {
+        // Optional: Customize the background
+        background: {
+            type: 'dots',
+            color: '#d5d5d5',
+            dotColor: '#8d8d8d',
+            dotSize: 2,
+            dotSpacing: 35
+        },
+    });
+
+    console.log('Flowly initialized!', flowly);
+    </script>
+</body>
+</html>
+```
+##### Key Points:
+- Make sure the **id="flowly-container"** matches the ID you will use when initializing Flowly.
+- The **flowly-container** needs a defined **width** and **height** in your CSS for Flowly to render correctly. We've added some basic inline styles for demonstration.
+- Remember to include Flowly's CSS and JavaScript files as per the [Installation](/getting-started/installation/) guide.
+
+##### Understanding the Flowly Constructor
+The **Flowly** constructor takes two arguments:
+1. **containerId** (string, required): The ID of the HTML element where Flowly should render the flow.
+2. **options** (object, optional): An object to configure the Flowly instance. Common options include:
+- **background**: Customize the canvas background (dots, grid, or none).
+- **readOnly**
+
+## 2. Adding Your First Node
+
+Now that Flowly is initialized, let's add a node to your flow. You can add nodes programmatically using the **addNode** method.
+
+**Modify your script tag:**
+
+```js
+document.getElementById('add-node-btn').addEventListener('click', () => {
+    // Add a simple node
+    flowly.addNode({
+        posX: 100, // X position on the canvas
+        posY: 100, // Y position on the canvas
+        name: 'My First Node', // The title displayed on the node's header
+        id: 'node-1',
+        // Optional properties:
+        data: {
+            // Custom data associated with this node
+            info: 'This is a sample node!'
+        },
+        input: {
+            name: 'Input Port',
+        },
+        output: {
+            name: 'Output Port',
+        },
+        showHeader: true, // Show or hide the node's header (default: true)
+        htmlContent: '<div>This is the **content area** of your node.</div>' // Custom HTML content for the node body
+    });
+    console.log('Node added!');
+});
+```
+
+##### Understanding **addNode** Options
+The **addNode** method accepts an object with various properties to define your node:
+- **posX**, **posY** (number, required): The initial X and Y coordinates of the node on the canvas.
+- **name** (string, optional): The title displayed in the node's header.
+- **data** (object, optional): A plain JavaScript object to store any custom data associated with the node. This data is persistent and can be accessed later.
+- **input** (object, optional): Defines the input port for the node. It can have a **name** property.
+- **output** (object, optional): Defines the output port for the node. It can have a name property.
+- **showHeader** (boolean, optional, default: **true**): Determines if the node's title bar should be visible.
+- **htmlContent** (string, optional): Allows you to inject custom HTML content directly into the body of the node.
+
+## 2. Interacting with Nodes (Optional: Quick Look)
+Flowly provides methods to interact with nodes after they are created. Here are a couple of common ones:
+
+##### Getting a Node by ID
+You can retrieve a node object using the unique ID you provided when calling **addNode**:
+```javascript
+let node = flowly.getById('node-1');
+console.log(node);
+```
+
+##### Updating a Node
+You can update a node's properties dynamically using the **updateNode** method.
+```javascript
+flowly.updateNode('node-1', {
+    name: 'Updated Node Title!',
+    htmlContent: '<div>This content was **dynamically updated**!</div>',
+});
+```
+
+##### Next Steps
+You've successfully created and interacted with your first Flowly diagram!
+- [Api Reference](/getting-started/installation/) Explore all available methods, properties, and events to build complex flows.
+- [Handling Events](/getting-started/installation/) Learn how to react to user interactions and internal Flowly events.

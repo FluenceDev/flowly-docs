@@ -1,0 +1,167 @@
+---
+title: Installation
+description: Learn how to install Flowly in your project using npm, pnpm, yarn, CDN, or manual download.
+---
+
+This guide outlines the steps to integrate **Flowly** into your project. Built entirely in Vanilla JavaScript, Flowly is designed for lightweight and straightforward implementation.
+
+
+---
+
+## Installation Methods
+
+You can install Flowly using one of the following methods:
+
+### 1. Using a Package Manager (Recommended)
+
+This is the recommended method for modern web development workflows
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs>
+  <TabItem label="npm">
+    #### Step 1: Install Flowly via npm
+
+    Open your terminal in your project's root directory and run:
+
+    ```bash
+    npm install flowly
+    ```
+
+    #### Step 2: Import Flowly into your JavaScript
+
+    In your main JavaScript file (e.g., `src/main.js` or `index.js`), import Flowly:
+
+    ```javascript
+    import Flowly from 'flowly';
+
+    // Now you can initialize Flowly
+    const flowlyInstance = new Flowly('#your-container-id');
+    ```
+
+    #### Step 3: Include Flowly's CSS
+
+    Flowly includes its own default styling. You'll need to include its CSS file in your project. The exact method depends on your bundler setup.
+
+    * **If you're using a CSS loader (e.g., in Webpack/Vite):**
+
+        ```javascript
+        import 'flowly/dist/flowly.css';
+        ```
+
+    * **Alternatively, link it directly in your HTML (less recommended for bundlers):**
+
+        ```html
+        <link rel="stylesheet" href="node_modules/flowly/dist/flowly.css">
+        ```
+        *(Note: Adjust the path if your `node_modules` directory isn't at the root.)*
+  </TabItem>
+  <TabItem label="pnpm">
+    #### Step 1: Install Flowly via pnpm
+
+    Open your terminal in your project's root directory and run:
+
+    ```bash
+    pnpm add flowly
+    ```
+
+    #### Step 2: Import Flowly into your JavaScript
+
+    In your main JavaScript file (e.g., `src/main.js` or `index.js`), import Flowly:
+
+    ```javascript
+    import Flowly from 'flowly';
+
+    // Now you can initialize Flowly
+    const flowlyInstance = new Flowly('#your-container-id');
+    ```
+
+    #### Step 3: Include Flowly's CSS
+
+    Flowly includes its own default styling. You'll need to include its CSS file in your project. The exact method depends on your bundler setup.
+
+    * **If you're using a CSS loader (e.g., in Webpack/Vite):**
+
+        ```javascript
+        import 'flowly/dist/flowly.css';
+        ```
+
+    * **Alternatively, link it directly in your HTML (less recommended for bundlers):**
+
+        ```html
+        <link rel="stylesheet" href="node_modules/flowly/dist/flowly.css">
+        ```
+        *(Note: Adjust the path if your `node_modules` directory isn't at the root.)*
+  </TabItem>
+  <TabItem label="Yarn">
+    #### Step 1: Install Flowly via Yarn
+
+    Open your terminal in your project's root directory and run:
+
+    ```bash
+    yarn add flowly
+    ```
+
+    #### Step 2: Import Flowly into your JavaScript
+
+    In your main JavaScript file (e.g., `src/main.js` or `index.js`), import Flowly:
+
+    ```javascript
+    import Flowly from 'flowly';
+
+    // Now you can initialize Flowly
+    const flowlyInstance = new Flowly('#your-container-id');
+    ```
+
+    #### Step 3: Include Flowly's CSS
+
+    Flowly includes its own default styling. You'll need to include its CSS file in your project. The exact method depends on your bundler setup.
+
+    * **If you're using a CSS loader (e.g., in Webpack/Vite):**
+
+        ```javascript
+        import 'flowly/dist/flowly.css';
+        ```
+
+    * **Alternatively, link it directly in your HTML (less recommended for bundlers):**
+
+        ```html
+        <link rel="stylesheet" href="node_modules/flowly/dist/flowly.css">
+        ```
+        *(Note: Adjust the path if your `node_modules` directory isn't at the root.)*
+  </TabItem>
+</Tabs>
+
+---
+
+### 2. Using a CDN
+
+For quick prototyping or simpler projects without a build tool, you can include Flowly directly from a Content Delivery Network (CDN).
+
+**Step 1: Include Flowly's JavaScript and CSS in your HTML**
+
+Add the following lines to the `<head>` or before the closing `</body>` tag of your HTML file:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Flowly App</title>
+    <link rel="stylesheet" href="https://unpkg.com/flowly@latest/dist/flowly.css">
+</head>
+<body>
+    <div id="flowly-container" style="width: 100%; height: 500px; border: 1px solid #ccc;"></div>
+
+    <script src="https://unpkg.com/flowly@latest/dist/flowly.min.js"></script>
+
+    <script>
+        // Initialize Flowly after the DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const flowlyInstance = new Flowly('#flowly-container');
+            // You can now start adding nodes and edges
+        });
+    </script>
+</body>
+</html>
